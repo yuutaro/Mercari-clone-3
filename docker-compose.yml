@@ -8,8 +8,7 @@ services:
       - POSTGRES_PASSWORD=password
   web:
     build: .
-    env_file:
-      - .env
+    env_file: .env
     image: mercari-clone:latest
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
@@ -20,6 +19,30 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: webpack-dev-server
+  tailwindcss-watch:
+    image: mercari-clone:latest
+    volumes:
+      - .:/myapp
+      - bundle:/usr/local/bundle
+      - node_modules:/myapp/node_modules
+    command: ["rails", "tailwindcss:watch"]
+    tty: true
+  webpack-dev-server:
+    image: mercari-clone:latest
+    volumes:
+      - .:/myapp
+      - bundle:/usr/local/bundle
+      - node_modules:/myapp/node_modules
+    environment:
+      NODE_ENV: development
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+      NODE_OPTIONS: --openssl-legacy-provider
+    command: ./bin/webpack-dev-server
+    ports:
+      - '3035:3035'
 volumes:
   bundle:
   node_modules:
