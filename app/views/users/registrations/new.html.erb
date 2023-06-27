@@ -1,16 +1,14 @@
 <main class="w-11/12 flex-1 max-w-screen-xl mx-auto bg-white mt-24 pb-24 md:px-8 xl:px-0" id="contents">
   <div class="text-center w-full px-4 bg-white md:w-2/3 lg:w-1/2 mx-auto" id="input">
     <h1 class="font-black mb-8 text-2xl">会員登録</h1>
-    <form action="https://ihatov08.github.io/mercari-clonse-assets/signup_email.html" mehod="">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <div class="text-left">
         <div class="mb-8">
-          <label class="block text-grey-500 text-sm font-bold mb-2" for="username">メールアドレス
-          </label>
-          <input class="appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full" type="text" placeholder="">
+          <%= f.label :email,  class: "block text-grey-500 text-sm font-bold mb-2" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full" %>
         </div>
         <div class="mb-8">
-          <label class="block text-grey-500 text-sm font-bold mb-2" for="username">パスワード
-          </label>
+          <%= f.label :password,class: "block text-grey-500 text-sm font-bold mb-2" %>
           <div class="relative">
             <div class="absolute top-0 pr-4 inset-y-0 right-0 flex items-center">
               <button>
@@ -20,10 +18,13 @@
                 </svg>
               </button>
             </div>
-            <input class="w-full p-3 text-black w-full border border-[#CDD6DD]" type="password" value="" placeholder="">
+            <%= f.password_field :password, autocomplete: "new-password", class: "w-full p-3 text-black w-full border border-[#CDD6DD]" %>
           </div>
-          <p class="text-xs mt-1 text-gray-800">※7文字以上の半角英数字</p>
+          <% if @minimum_password_length %>
+            <p class="text-xs mt-1 text-gray-800">※<%= @minimum_password_length %>7文字以上の半角英数字</p>
+          <% end %>
         </div>
+
         <div class="mb-8">
           <label class="block text-grey-500 text-sm font-bold mb-2" for="username">ニックネーム
           </label>
@@ -53,6 +54,6 @@
           <button class="text-base font-bold bg-red-500 text-white p-2 w-full block py-4 rounded-sm" value="">次へ</button>
         </div>
       </div>
-    </form>
+    <% end %>
   </div>
 </main>
