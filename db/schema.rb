@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_29_013653) do
+ActiveRecord::Schema.define(version: 2023_06_29_055054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 2023_06_29_013653) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_user_informations_on_user_id"
+  end
+
+  create_table "user_mobile_phones", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "number"
+    t.string "auth_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["auth_code"], name: "index_user_mobile_phones_on_auth_code"
+    t.index ["number"], name: "index_user_mobile_phones_on_number", unique: true
+    t.index ["user_id"], name: "index_user_mobile_phones_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,4 +67,5 @@ ActiveRecord::Schema.define(version: 2023_06_29_013653) do
   end
 
   add_foreign_key "user_informations", "users"
+  add_foreign_key "user_mobile_phones", "users"
 end
