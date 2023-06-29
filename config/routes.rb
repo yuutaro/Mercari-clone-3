@@ -10,7 +10,13 @@ Rails.application.routes.draw do
 
   # 単数形に注意　/user_information/:id とはならない
   # /user_information となる
+  # new_user_information_path  GET    /user_information/new(.:format)  user_informations#new
+  # user_information_path      POST   /user_information(.:format)      user_informations#create
   resource :user_information
+
+  # new_user_mobile_phone_path GET   /user_mobile_phone/new(.:format)  user_mobile_phones#new
+  # user_mobile_phone_path     POST  /user_mobile_phone(.:format)      user_mobile_phones#create
+  resource :user_mobile_phone, only: [:new, :create]
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
