@@ -9,7 +9,7 @@ class UserInformationsController < ApplicationController
   def create
     @user_information = current_user.build_user_information(user_information_params)
     if @user_information.save
-      redirect_to root_path, notice: "ユーザー情報を登録しました"
+      redirect_to new_user_mobile_phone_path, notice: "ユーザー情報を登録しました"
     else
       flash.now[:alert] = "ユーザー情報の登録に失敗しました"
       render :new
