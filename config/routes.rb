@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   }
   root to: "home#index"
 
+  # 単数形に注意　/user_information/:id とはならない
+  # /user_information となる
+  resource :user_information
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
