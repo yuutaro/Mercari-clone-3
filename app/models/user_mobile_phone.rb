@@ -11,7 +11,7 @@ class UserMobilePhone < ApplicationRecord
   before_validation :set_auth_code, if: :new_record?
 
   def send_auth_code_to_sms
-    TwilioClient
+    TwilioCliant
       .new
       .send_auth_code_to_sms(to: number, auth_code: auth_code)
   end
@@ -20,7 +20,7 @@ class UserMobilePhone < ApplicationRecord
     return unless code == auth_code
     update(verified: true)
   end
-  
+
   private
 
   def set_auth_code

@@ -1,4 +1,4 @@
-class TwilioClient
+class TwilioCliant
 	def client
 		@client ||=
 		Twilio::REST::Client
@@ -24,5 +24,5 @@ class TwilioClient
 			認証コードは #{auth_code} です。
 		BODY
 	end
-	
+
 end
