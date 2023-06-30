@@ -2,6 +2,10 @@ class UserMobilePhonesController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    @user_mobile_phone = current_user.build_user_mobile_phone
+  end
+
+  def create
     @user_mobile_phone = current_user.build_user_mobile_phone(user_mobile_phone_params)
 
     if @user_mobile_phone.save
@@ -11,9 +15,6 @@ class UserMobilePhonesController < ApplicationController
       flash.now[:alert] = "電話番号登録に失敗しました。"
       render :new
     end
-  end
-
-  def create
   end
 
   def verification
