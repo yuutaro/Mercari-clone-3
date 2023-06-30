@@ -16,7 +16,7 @@ class UserMobilePhonesController < ApplicationController
   def create
   end
 
-  def valification
+  def verification
   end
 
   private
