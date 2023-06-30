@@ -22,7 +22,7 @@ class UserMobilePhonesController < ApplicationController
     return unless request.post?
 
     if @user_mobile_phone.verify(params[:auth_code])
-      redirect_to root_path, notice: "電話番号の認証に成功しました。"
+      redirect_to users_registrations_complete_path, notice: "電話番号の認証に成功しました。"
     else
       flash.now[:alert] = "認証コードが間違っています。"
       render :verification

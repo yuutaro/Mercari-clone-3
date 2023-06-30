@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   }
   root to: "home#index"
 
+  devise_scope :user do
+    get "users/registrations/complete" => "users/registrations#complete"
+  end
+
   # 単数形に注意　/user_information/:id とはならない
   # /user_information となる
   # new_user_information_path  GET    /user_information/new(.:format)  user_informations#new
