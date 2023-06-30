@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_29_055054) do
+ActiveRecord::Schema.define(version: 2023_06_30_070237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2023_06_29_055054) do
     t.string "auth_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "verified", default: false, null: false
     t.index ["auth_code"], name: "index_user_mobile_phones_on_auth_code"
     t.index ["number"], name: "index_user_mobile_phones_on_number", unique: true
     t.index ["user_id"], name: "index_user_mobile_phones_on_user_id"
