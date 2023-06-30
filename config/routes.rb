@@ -16,7 +16,14 @@ Rails.application.routes.draw do
 
   # new_user_mobile_phone_path GET   /user_mobile_phone/new(.:format)  user_mobile_phones#new
   # user_mobile_phone_path     POST  /user_mobile_phone(.:format)      user_mobile_phones#create
-  resource :user_mobile_phone, only: [:new, :create]
+  resource :user_mobile_phone, only: [:new, :create] do
+    collection do
+      # verification_user_mobile_phones_path GET /user_mobile_phone/verification(.:format) user_mobile_phones#verification
+      get :verification
+      # verification_user_mobile_phones_path POST /user_mobile_phone/verification(.:format) user_mobile_phones#verification
+      post :verification
+    end
+  end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
