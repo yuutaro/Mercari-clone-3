@@ -1,0 +1,7 @@
+<%= @resource.email %>さん
+
+URIKARIをご利用いただきありがとうございます。
+
+以下のリンクをクリックして、アカウントロックを解除してください。
+
+<%= unlock_url(@resource, unlock_token: @token) %>
