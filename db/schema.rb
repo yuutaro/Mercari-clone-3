@@ -60,10 +60,9 @@ ActiveRecord::Schema.define(version: 2023_07_01_093016) do
   end
 
   create_table "shipping_day_types", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_shipping_day_types_on_name", unique: true
   end
 
   create_table "shipping_payer_types", force: :cascade do |t|
