@@ -34,7 +34,9 @@ Rails.application.routes.draw do
   resources :items do
     resources :favorites, only: [:create]
     delete "favorites", to: "favorites#destroy", as: :favorite
-    resources :comments, only: [:create, :destroy], shallow: true
+    resources :comments, only: [:create, :destroy], shallow: true do
+      resources :reports, only: [:create, :destroy]
+    end
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
