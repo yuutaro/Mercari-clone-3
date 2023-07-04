@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :favorites, only: [:create]
     delete "favorites", to: "favorites#destroy", as: :favorite
     resources :comments, only: [:create, :destroy], shallow: true do
-      resources :reports, only: [:create, :destroy]
+      resources :reports, only: [:new, :create]
     end
   end
 
