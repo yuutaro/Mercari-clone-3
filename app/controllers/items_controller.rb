@@ -6,12 +6,12 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = @current_user.items.build(item_params)
+    @item = current_user.items.build(item_params)
 
     if @item.save
       redirect_to @item, notice: "商品の作成に成功しました"
     else
-      flash.now.alart = "商品の作成に失敗しました"
+      flash.now.alert = "商品の作成に失敗しました"
       render :new
     end
   end
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).parmit(
+    params.require(:item).permit(
       :item_category_id,
       :item_condition_id,
       :name,
