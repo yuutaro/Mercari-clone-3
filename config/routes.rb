@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   # item_favorite_path  DELETE /items/:item_id/favorites(.:format)  favorites#destroy
   resources :items do
     resources :favorites, only: [:create]
-    delate "favorites", to: "favorites#destroy", as: :favorite
+    delete "favorites", to: "favorites#destroy", as: :favorite
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
