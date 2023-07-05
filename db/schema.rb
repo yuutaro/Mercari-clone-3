@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_04_123931) do
+ActiveRecord::Schema.define(version: 2023_07_05_062251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,15 @@ ActiveRecord::Schema.define(version: 2023_07_04_123931) do
     t.index ["name"], name: "index_shipping_payer_types_on_name", unique: true
   end
 
+  create_table "stripe_customers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "customer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_stripe_customers_on_customer_id", unique: true
+    t.index ["user_id"], name: "index_stripe_customers_on_user_id", unique: true
+  end
+
   create_table "user_informations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "family_name", null: false
@@ -177,6 +186,7 @@ ActiveRecord::Schema.define(version: 2023_07_04_123931) do
   add_foreign_key "reports", "comments"
   add_foreign_key "reports", "report_reasons"
   add_foreign_key "reports", "users"
+  add_foreign_key "stripe_customers", "users"
   add_foreign_key "user_informations", "users"
   add_foreign_key "user_mobile_phones", "users"
 end
