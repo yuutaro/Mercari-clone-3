@@ -8,11 +8,24 @@ class ReportsController < ApplicationController
   end
 
   def create
+    @report = @comment.reports.build(report_params)
+    @report.user_id = current_user.id
+
+    if @report.save
+      redirect_to item_path(@report.comment.item), notice: '通報しました。'
+    else
+      flash.now[:alert] = '通報に失敗しました。'
+      render :new
+    end
   end
 
   private
 
   def set_comment
     @comment = Comment.find(params[:comment_id])
+  end
+
+  def report_params
+    params.require(:report).permit(:report_season_id, :body)
   end
 end
