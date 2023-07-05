@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy], shallow: true do
       resources :reports, only: [:new, :create]
     end
+    resources :stripe_payments, only: [:index, :new, :destroy]
+    get "stripe_payments/create", to: "stripe_payments#create", as: :get_create_stripe_payments
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
