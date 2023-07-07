@@ -31,9 +31,11 @@ Rails.application.routes.draw do
 
   # item_favorites_path POST   /items/:item_id/favorites(.:format)  favorites#create
   # item_favorite_path  DELETE /items/:item_id/favorites(.:format)  favorites#destroy
+  # item_comments_path  POST   /items/:item_id/comments(.:format)   comments#create
+  # comment_path        DELETE /comments/:id(.:format)              comments#destroy
   resources :items do
-    resources :favorites, only: [:create]
-    delete "favorites", to: "favorites#destroy", as: :favorite
+    resources :favorites, only: %i[create destroy], param: :item_id, shallow: true
+    resources :comments, only: %i[create destroy], shallow: true
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
