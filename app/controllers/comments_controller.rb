@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     comment.user_id = current_user.id
 
     if comment.save
-      redirect_to item_path(@item), "コメントの作成に成功しました"
+      redirect_to item_path(@item), notice: "コメントの作成に成功しました"
     else
       flash.now.alert = "コメントの作成に失敗しました"
       render "items/show"
@@ -14,6 +14,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    comment = current_user.comments.find(params[:id])
+    comment.destroy
+    redirect_to comment.item, notice: "コメントの削除に成功しました"
   end
 
   private
