@@ -5,13 +5,13 @@ class ShippingAddress < ApplicationRecord
   ZENKAKU_REGEX = /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/
   ZENKAKU_KANA_REGEX =  /\A[ァ-ヶー－]+\z/
 
-  validates :family_name,        presence :true, format: { with: ZENKAKU_REGEX, message: '全角文字を使用してください' }, allow_blank: true
-  validates :given_name,         presence :true, format: { with: ZENKAKU_REGEX, message: '全角文字を使用してください' }, allow_blank: true
-  validates :family_name_kana,   presence :true, format: { with: ZENKAKU_KANA_REGEX, message: '全角カタカナを使用してください' }, allow_blank: true
-  validates :given_name_kana,    presence :true, format: { with: ZENKAKU_KANA_REGEX, message: '全角カタカナを使用してください' }, allow_blank: true
-  validates :postal_code,        presence :true
-  validates :city,               presence :true
-  validates :line,               presence :true
-  validates :building_name,      presence :true
-  validates :phone_number,       presence :true
+  validates :family_name,        presence: :true, format: { with: ZENKAKU_REGEX, message: '全角文字を使用してください' }, allow_blank: true
+  validates :given_name,         presence: :true, format: { with: ZENKAKU_REGEX, message: '全角文字を使用してください' }, allow_blank: true
+  validates :family_name_kana,   presence: :true, format: { with: ZENKAKU_KANA_REGEX, message: '全角カタカナを使用してください' }, allow_blank: true
+  validates :given_name_kana,    presence: :true, format: { with: ZENKAKU_KANA_REGEX, message: '全角カタカナを使用してください' }, allow_blank: true
+  validates :postal_code,        presence: :true
+  validates :city,               presence: :true
+  validates :line,               presence: :true
+  validates :building_name,      presence: :true
+  validates :phone_number,       presence: :true
 end
