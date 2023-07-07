@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    attributes:
+      shipping_address:
+        user: ユーザー
+        family_name: 姓（全角）
+        given_name: 名（全角）
+        family_name_kana: 姓カナ（全角）
+        given_name_kana: 名カナ（全角）
+        postal_code: 郵便番号
+        prefecture: 都道府県
+        city: 市区町村
+        line: 住所
