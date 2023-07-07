@@ -8,37 +8,31 @@
     </div>
     <%= form_with model: @user_information, url: user_information_path do |f| %>
       <%= render partial: "shared/error_messages", locals: { resource: @user_information } %>
-      <div class="text-left"
-      >
+      <div class="text-left">
         <div class="mb-8">
-          <%= f.label :family_name , class: "block text-grey-500 text-sm font-bold mb-2" %>
-          <%= f.text_field :family_name ,  placeholder: "例）売買", class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full" %>
+          <%= f.label :family_name, class: "block text-grey-500 text-sm font-bold mb-2" %>
+          <%= f.text_field :family_name, class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full", placeholder: "例）売買" %>
         </div>
-
         <div class="mb-8">
-          <%= f.label :given_name , class: "block text-grey-500 text-sm font-bold mb-2" %>
-          <%= f.text_field :given_name , placeholder: "例）太郎",class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full" %>
+          <%= f.label :given_name, class: "block text-grey-500 text-sm font-bold mb-2" %>
+          <%= f.text_field :given_name, class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full", placeholder: "例）太郎" %>
         </div>
-
         <div class="mb-8">
-          <%= f.label :family_name_kana , class: "block text-grey-500 text-sm font-bold mb-2" %>
-          <%= f.text_field :family_name_kana , placeholder: "例）ウリカイ", class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full" %>
+          <%= f.label :given_name_kana, class: "block text-grey-500 text-sm font-bold mb-2" %>
+          <%= f.text_field :given_name_kana, class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full", placeholder: "例）ウリカイ" %>
         </div>
-
         <div class="mb-8">
-          <%= f.label :given_name_kana , class: "block text-grey-500 text-sm font-bold mb-2" %>
-          <%= f.text_field :given_name_kana , placeholder: "例）タロウ", class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full" %>
+          <%= f.label :family_name_kana, class: "block text-grey-500 text-sm font-bold mb-2" %>
+          <%= f.text_field :family_name_kana, class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full", placeholder: "例）タロウ" %>
         </div>
-
         <div class="mb-8">
-          <%= f.label :birth_date , class: "block text-grey-500 text-sm font-bold mb-2" %>
-          <%= f.date_field :birth_date ,  placeholder: "2000/01/01" , class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full" %>
+          <%= f.label :birth_date, class: "block text-grey-500 text-sm font-bold mb-2" %>
+          <%= f.date_field :birth_date, class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full", placeholder: "2021/12/12" %>
         </div>
-
       </div>
       <div>
         <div class="text-center mb-2 flex flex-col space-y-4">
-          <%= f.submit "次へ", class: "text-base font-bold bg-red-500 text-white p-2 w-full block py-4 rounded-sm" %>
+          <%= f.submit "次へ", class: "text-base font-bold bg-red-500 text-white p-2 w-full block text-sm py-4 rounded-sm" %>
         </div>
       </div>
     <% end %>
