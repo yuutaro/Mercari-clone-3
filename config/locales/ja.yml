@@ -1,3 +1,4 @@
+---
 ja:
   activerecord:
     errors:
@@ -16,7 +17,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    -
+    - 
     - 1月
     - 2月
     - 3月
@@ -42,7 +43,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    -
+    - 
     - 1月
     - 2月
     - 3月
@@ -128,7 +129,7 @@ ja:
         separator: "."
         significant: false
         strip_insignificant_zeros: false
-        unit: "¥"
+        unit: ￥
     format:
       delimiter: ","
       precision: 3
