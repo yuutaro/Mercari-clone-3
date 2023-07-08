@@ -13,5 +13,5 @@ ja:
         line: 住所
         building_name: 建物名
         phone_number: 電話番号
-      models:
-        shipping_address: 配送先住所
+    models:
+      shipping_address: 配送先住所

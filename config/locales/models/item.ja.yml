@@ -12,5 +12,5 @@ ja:
         shipping_day_type: 発送までの日数
         price: 販売価格
         images: 商品画像
-      models:
-        item: 商品
+    models:
+      item: 商品
