@@ -13,7 +13,7 @@ class ShippingAddressesController < ApplicationController
   def create
     @shipping_address = current_user.shipping_addresses.build(shipping_address_params)
     if @shipping_address.save
-      redirect_to item_path(@shipping_address.item), notice: '配送先を登録しました'
+      redirect_to item_shipping_addresses_path(@item), notice: '配送先を登録しました'
     else
       flash.now[:alert] = '配送先の登録に失敗しました'
       render :new
