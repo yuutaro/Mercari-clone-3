@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resource :user_mobile_phone, only: [:new, :create] do
   # new_user_mobile_phone_path GET   /user_mobile_phone/new(.:format)  user_mobile_phones#new
   # user_mobile_phone_path     POST  /user_mobile_phone(.:format)      user_mobile_phones#create
-  
+
     collection do
       # verification_user_mobile_phones_path GET /user_mobile_phone/verification(.:format) user_mobile_phones#verification
       get :verification
@@ -70,6 +70,16 @@ Rails.application.routes.draw do
     resource :current_stripe_payment, only: %i[update]
     # item_current_stripe_payment_path     PATCH   /items/:item_id/current_stripe_payment(.:format) current_stripe_payments#update
     # item_current_stripe_payment_path     PUT     /items/:item_id/current_stripe_payment(.:format) current_stripe_payments#update
+
+    resources :shipping_addresses
+    # item_shipping_addresses_path         GET     /items/:item_id/shipping_addresses(.:format)          shipping_addresses#index
+    # item_shipping_addresses_path         POST    /items/:item_id/shipping_addresses(.:format)          shipping_addresses#create
+    # new_item_shipping_addresses_path     GET     /items/:item_id/shipping_addresses/new(.:format)      shipping_addresses#new
+    # edit_item_shipping_addresses_path    GET     /items/:item_id/shipping_addresses/:id/edit(.:format) shipping_addresses#edit
+    # item_shipping_address_path           GET     /items/:item_id/shipping_addresses/:id(.:format)      shipping_addresses#show
+    # item_shipping_address_path           PATCH   /items/:item_id/shipping_addresses/:id(.:format)      shipping_addresses#update
+    # item_shipping_address_path           PUT     /items/:item_id/shipping_addresses/:id(.:format)      shipping_addresses#update
+    # item_shipping_address_path           DELETE  /items/:item_id/shipping_addresses/:id(.:format)      shipping_addresses#destroy
 
   end
 
