@@ -7,7 +7,7 @@
       </div>
     </div>
     <%= form_with model: @shipping_address, url: item_shipping_addresses_path(@item) do |f| %>
-    <%= render partial: "form", locals: {shipping_address: @shipping_address, f: f } %>
+      <%= render partial: "form", locals: {shipping_address: @shipping_address, f: f } %>
     <% end %>
   </div>
 </main>
