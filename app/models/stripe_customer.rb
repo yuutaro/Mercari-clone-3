@@ -1,8 +1,10 @@
 class StripeCustomer < ApplicationRecord
   belongs_to :user
 
+  has_one :current_stripe_payment, dependent: :destroy
+
   has_many :stripe_payments, dependent: :destroy
-  
+
   validates :customer_id, presence: true
   validates :customer_id, uniqueness: true
 
