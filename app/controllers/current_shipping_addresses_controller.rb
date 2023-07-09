@@ -9,7 +9,7 @@ class CurrentShippingAddressesController < ApplicationController
       )
 
     if @current_shipping_address.update(shipping_address_id: params[:shipping_address_id])
-      redirect_to item_shipping_addresses_path(@item), notice: '配送先を変更しました'
+      redirect_to new_item_order_path(@item), notice: '配送先を変更しました'
     else
       flash.now[:alert] = '配送先の変更に失敗しました'
       render "shipping_addresses/index"
