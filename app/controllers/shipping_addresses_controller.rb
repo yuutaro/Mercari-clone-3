@@ -1,7 +1,7 @@
 class ShippingAddressesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, only: [:index, :new, :create, :edit, :update]
-  before_action :set_shipping_address, only: [:edit, :update]
+  before_action :set_item, only: [:index, :new, :create, :edit, :update, :destroy]
+  before_action :set_shipping_address, only: [:edit, :update, :destroy]
 
   def index
     @shipping_addresses = current_user.shipping_addresses
@@ -34,6 +34,8 @@ class ShippingAddressesController < ApplicationController
   end
 
   def destroy
+    @shipping_address.destroy
+    redirect_to item_shipping_addresses_path(@item), notice: '配送先を削除しました'
   end
 
   private
