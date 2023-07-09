@@ -5,9 +5,6 @@ class StripePaymentsController < ApplicationController
     def index 
     end
 
-    def destroy
-    end 
-
     def new
         @setup_intent =
         Stripe::SetupIntent.create(
@@ -35,6 +32,12 @@ class StripePaymentsController < ApplicationController
             redirect_to item_stripe_payments_path(@item), alert: "カード情報の登録に失敗しました"
         end
     end
+
+    def destroy
+        stripe_payment = current_user.stripe_customer.stripe_payments.find(params[:id])
+        stripe_payment.destroy
+        redirect_to item_stripe_payments_path(@item), notice: "カード情報の削除に成功しました"
+    end 
     
     private
     
