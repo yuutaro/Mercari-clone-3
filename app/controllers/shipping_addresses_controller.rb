@@ -1,6 +1,7 @@
 class ShippingAddressesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :new, :create, :edit, :update]
+  before_action :set_shipping_address, only: [:edit, :update]
 
   def index
     @shipping_addresses = current_user.shipping_addresses
@@ -21,10 +22,15 @@ class ShippingAddressesController < ApplicationController
   end
 
   def edit
-    @shipping_address = current_user.shipping_addresses.find(params[:id])
   end
 
   def update
+    if @shipping_address.update(shipping_address_params)
+      redirect_to item_shipping_addresses_path(@item), notice: '配送先を更新しました'
+    else
+      flash.now[:alert] = '配送先の更新に失敗しました'
+      render :edit
+    end
   end
 
   def destroy
@@ -34,6 +40,10 @@ class ShippingAddressesController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def set_shipping_address
+    @shipping_address = current_user.shipping_addresses.find(params[:id])
   end
 
   def shipping_address_params
