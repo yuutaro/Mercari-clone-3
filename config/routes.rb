@@ -43,12 +43,16 @@ Rails.application.routes.draw do
       # new_comment_report_path GET  /comments/:comment_id/reports/new(.:format) reports#new
       resources :reports, only: %i[new create]
     end
-    # item_stripe_payments_path            GET     /items/:item_id/stripe_payments(.:format)  stripe_payments#index
-    # new_item_stripe_payment_path         GET     /items/:item_id/stripe_payments/new(.:format)  stripe_payments#new
-    # item_stripe_payment_path             DELETE  /items/:item_id/stripe_payments/:id(.:format)  stripe_payments#destroy
-    # item_get_create_stripe_payments_path GET     /items/:item_id/stripe_payments/create(.:format)  stripe_payments#create
+    # item_stripe_payments_path            GET     /items/:item_id/stripe_payments(.:format)        stripe_payments#index
+    # new_item_stripe_payment_path         GET     /items/:item_id/stripe_payments/new(.:format)    stripe_payments#new
+    # item_stripe_payment_path             DELETE  /items/:item_id/stripe_payments/:id(.:format)    stripe_payments#destroy
+    # item_get_create_stripe_payments_path GET     /items/:item_id/stripe_payments/create(.:format) stripe_payments#create
     resources :stripe_payments, only: %i[index new destroy]
     get "stripe_payments/create" => "stripe_payments#create", as: :get_create_stripe_payments
+
+    # item_current_stripe_payment_path     PATCH   /items/:item_id/current_stripe_payment(.:format) current_stripe_payments#update
+    # item_current_stripe_payment_path     PUT     /items/:item_id/current_stripe_payment(.:format) current_stripe_payments#update
+    resource :current_stripe_payment, only: %i[update]
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
