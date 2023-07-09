@@ -13,10 +13,11 @@ class User < ApplicationRecord
   validates :gender,     presence: true
   before_validation :skip_confirmation!, if: :new_record?
   after_create :create_stripe_customer
-  
+
   has_one :user_information, dependent: :destroy
   has_one :user_mobile_phone, dependent: :destroy
   has_one :stripe_customer, dependent: :destroy
+  has_one :current_shipping_address, dependent: :destroy
 
 
   has_many :items, dependent: :destroy
