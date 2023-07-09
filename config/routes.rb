@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     resource :current_stripe_payment, only: [:update]
     resources :shipping_addresses
     resource :current_shipping_address, only: [:update]
+    resources :orders, only: [:new, :create]
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
