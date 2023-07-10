@@ -48,8 +48,9 @@ Rails.application.routes.draw do
   # item_path      DELETE /items/:id(.:format)      items#destroy
 
     resources :favorites, only: %i[create]
+     # item_favorites_path POST   /items/:item_id/favorites(.:format)  favorites#create
+     
     delete "favorites", to: "favorites#destroy", as: :favorite
-    # item_favorites_path POST   /items/:item_id/favorites(.:format)  favorites#create
     # item_favorite_path  DELETE /items/:item_id/favorites(.:format)  favorites#destroy
 
     resources :comments, only: %i[create destroy], shallow: true do

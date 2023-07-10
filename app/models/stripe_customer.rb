@@ -13,7 +13,7 @@ class StripeCustomer < ApplicationRecord
   private
 
   def create_stripe_customer
-    stripe_customer = Stripe::Customer.create(metadata: { user_id: user.id → })
+    stripe_customer = Stripe::Customer.create(metadata: { user_id: user.id })
     self.customer_id = stripe_customer.id
   end
 
