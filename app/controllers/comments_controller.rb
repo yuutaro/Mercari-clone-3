@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     comment.user_id = current_user.id
 
     if comment.save
+      UserMailer.notify_comment(comment).deliver
       redirect_to item_path(@item), notice: 'コメントを投稿しました'
     else
       flash.now[:alert] = 'コメントの投稿に失敗しました'
