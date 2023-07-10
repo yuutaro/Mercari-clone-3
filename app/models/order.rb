@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :item
+  belongs_to :payer_prefecture, class_name: "Prefecture"
 
   enum status: {
     ordered: 10,
