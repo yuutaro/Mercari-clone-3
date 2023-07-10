@@ -1,6 +1,6 @@
 class ShippingAddressesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item, only: %i[index new create]
+  before_action :set_item, only: %i[index new create edit update]
   def index
     @shipping_addresses = current_user.shipping_addresses
   end
@@ -21,6 +21,7 @@ class ShippingAddressesController < ApplicationController
   end
 
   def edit
+    @shipping_address = current_user.shipping_addresses.find(params[:id])
   end
 
   def update
