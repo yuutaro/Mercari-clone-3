@@ -49,10 +49,14 @@
         </button>
       </div>
       <div class="mb-0 fixed bottom-0 bg-white w-full p-3 md:mb-8 md:p-0 border-t border-gray-300 md:border-none -ml-2 md:ml-0 md:w-auto z-50 md:static" id="button">
-        <% if @item.user == current_user %>
-          <%= link_to "編集する", edit_item_path(@item), class: "text-base font-bold bg-red-500 text-white p-2 w-full block text-sm py-4 rounded-sm text-center" %>
+        <% if @item.order %>
+          <button disabled="true" class= "font-bold bg-gray-500 text-white p-2 w-full block text-sm py-4 rounded-sm text-center">売り切れました</button>
         <% else %>
-          <%= link_to "購入手続きへ", new_item_order_path(@item), class: "text-base font-bold bg-red-500 text-white p-2 w-full block py-4 rounded-sm" %>
+          <% if @item.user == current_user %>
+            <%= link_to "編集する", edit_item_path(@item), class: "text-base font-bold bg-red-500 text-white p-2 w-full block text-sm py-4 rounded-sm text-center" %>
+          <% else %>
+            <%= link_to "購入手続きへ", new_item_order_path(@item), class: "text-base font-bold bg-red-500 text-white p-2 w-full block py-4 rounded-sm text-center" %>
+          <% end %>
         <% end %>
       </div>
       <div class="mb-8" id="description">
@@ -162,7 +166,7 @@
                   <p><%= comment.body %></p>
                   <p class="text-xxs text-left text-gray-400"><%= l comment.created_at, format: :short %></p>
                   <div class="flex justify-end space-x-2">
-                    <%= link_to new_comment_report_path(comment), class:"hover:bg-gray-300 duration-200 trantision rounded-full flex items-center justify-center w-6 h-6" do %>
+                    <%= link_to new_comment_report_path(comment), class: "hover:bg-gray-300 duration-200 trantision rounded-full flex items-center justify-center w-6 h-6" do %>
                       <svg class="w-3.5 text-gray-700" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3 3.747a.75.75 0 0 1 .75-.75h16.504a.75.75 0 0 1 .6 1.2L16.69 9.748l4.164 5.552a.75.75 0 0 1-.6 1.2H4.5v4.749a.75.75 0 0 1-.648.743L3.75 22a.75.75 0 0 1-.743-.648L3 21.249V3.747Z" fill="currentColor"></path>
                       </svg>
