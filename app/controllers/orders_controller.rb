@@ -17,6 +17,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  def show
+    @order = Order.find(params[:id])
+
+    return if @order.user_id == current_user.id
+    return if @order.item.user_id == current_user.id
+
+    raise ActiveRecord::RecordNotFound
+  end
+
   private
   
   def set_item
