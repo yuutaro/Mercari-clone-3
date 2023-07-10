@@ -50,6 +50,18 @@ class Order < ApplicationRecord
     end
   end
 
+  def full_name
+    "#{payer_family_name} #{payer_given_name}"
+  end
+
+  def display_postal_code
+    payer_postal_code.insert(3, "-")
+  end
+
+  def address
+    "#{payer_prefecture.name}#{payer_city}#{payer_line}#{payer_building_name}"
+  end
+
   private
 
   def payment_method_id
@@ -105,4 +117,5 @@ class Order < ApplicationRecord
       payer_phone_number: shipping_address.phone_number,
     )
   end
+  
 end
