@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(user: current_user, item: @item)
     if @order.pay!
-      UserMailer.notify_orderd(@order).deliver
+      UserMailer.notify_ordered(@order).deliver
       redirect_to order_path(@order), notice: "商品を購入しました"
     else
       flash.now[:alert] = "商品の購入に失敗しました"
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   end
 
   private
-  
+
   def set_item
     @item = Item.find(params[:item_id])
   end
