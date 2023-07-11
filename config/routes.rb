@@ -42,7 +42,9 @@ Rails.application.routes.draw do
     resource :current_stripe_payment, only: [:update]
     resources :shipping_addresses
     resource :current_shipping_address, only: [:update]
-    resources :orders, only: [:new, :create, :show], shallow: true
+    resources :orders, only: [:new, :create, :show], shallow: true do
+      resources :messages, only: [:create]                                                                  # order_messages_path POST   /orders/:order_id/messages(.:format)  messages#create
+    end
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
