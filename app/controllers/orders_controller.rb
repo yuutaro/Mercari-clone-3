@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
 
-    @messagae = @order.messages.build
+    @message = @order.messages.build
 
     return if @order.user_id == current_user.id
     return if @order.item.user_id == current_user.id
