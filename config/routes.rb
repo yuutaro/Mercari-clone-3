@@ -87,7 +87,7 @@ Rails.application.routes.draw do
     # item_current_shipping_address_path   PATCH   /items/:item_id/current_shipping_address(.:format) current_shipping_addresses#update
     # item_current_shipping_address_path   PUT     /items/:item_id/current_shipping_address(.:format) current_shipping_addresses#update
 
-    resources :orders, only: %i[new create]
+    resources :orders, only: %i[new create show], shallow: true
     # item_orders_path      POST  /items/:item_id/orders(.:format)      orders#create
     # new_item_order_path   GET   /items/:item_id/orders/new(.:format)  orders#new
   end
