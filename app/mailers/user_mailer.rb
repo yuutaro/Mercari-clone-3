@@ -1,7 +1,5 @@
 class UserMailer < ApplicationMailer
 
-  en.user_mailer.notify_ordered.subject
-
   def notify_ordered(order)
     @order = order
     mail to: @order.user.email,
