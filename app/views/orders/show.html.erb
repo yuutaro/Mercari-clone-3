@@ -39,8 +39,23 @@
 		<div class="text-left w-full px-4 bg-white md:w-2/3 lg:w-2/3 ">
 			<h2 class="font-black mb-4 text-2xl">取引画面</h2>
 			<div class="bg-yellow-100 rounded-lg p-4 text-sm">
-				<p class="font-bold mb-2"> 発送をお待ちください</p>
-				<p>出品者からの発送通知をお待ちください</p>
+				<% if current_user.id == @order.user_id %>
+					<% if @order.ordered? %>
+						<p class="font-bold mb-2"> 発送をお待ちください</p>
+						<p>出品者からの発送通知をお待ちください</p>
+					<% elsif @order.shipped? %>
+						<p class="font-bold mb-2"> 受け取り評価をしてください</p>
+						<p>商品が発送されました。商品が到着したら、出品者の評価をしてください</p>
+					<% end %>
+				<% else %>
+					<% if @order.orderd? %>
+						<p class="font-bold mb-2"> 商品を発送してください</p>
+						<p>商品が購入され、支払いされました。発送してください</p>
+					<% elsif @order.shipperd? %>
+						<p class="font-bold mb-2">商品の発送を通知しました<\p>
+						<p>購入者の受け取り確認と評価をしばらくお待ちください</p>
+					<% end %>
+				<% end %>
 			</div>
 			<%= link_to "商品の発送をしたので、発送通知をする", ship_order_path(@order), method: :post, data: {confirm: "発送通知をしますか？"}, class: "mt-2 text-base  font-bold bg-red-500 text-white p-2 w-full block text-sm py-4 rounded-sm text-center" if current_user.id == @order.item.user_id && @order.ordered? %>
 			<div class="mt-12">
