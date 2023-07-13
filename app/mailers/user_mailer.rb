@@ -25,5 +25,12 @@ class UserMailer < ApplicationMailer
     mail to: @message.recipient.email,
         subject: "【URIKAI】#{message.order.item.name}に取引メッセージがありました。"
   end
+
+  def notify_shipped(order)
+    @order = order
+
+    mail to: order.payer.email,
+        subject: "【URIKAI】#{order.item.name}が発送されました。"
+  end
   
 end
