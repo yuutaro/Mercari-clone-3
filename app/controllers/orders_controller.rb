@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
     if @order.update(status: :shipped)
       redirect_to order_path(@order), notice: "商品を発送しました"
     else
-      flash.new.[:alert] = "商品の発送通知に失敗しました"
+      flash.new.alert = "商品の発送通知に失敗しました"
     end
   end     
 
