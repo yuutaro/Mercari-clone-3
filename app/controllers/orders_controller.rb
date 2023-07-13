@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:new, :create]
+  before_action :set_order, only: [:show, :ship]
 
   def new
     @order = Order.new(user: current_user, item: @item)
@@ -18,19 +19,21 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
-
     @message = @order.messages.build
-
-    return if @order.user_id == current_user.id
-    return if @order.item.user_id == current_user.id
-
-    raise ActiveRecord::RecordNotFound
   end
 
   private
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def set_order
+    @order = Order.find(params[:id])
+
+    return if @order.user_id == current_user.id
+    return if @order.item.user_id == current_user.id
+
+    raise ActiveRecord::RecordNotFound
   end
 end
