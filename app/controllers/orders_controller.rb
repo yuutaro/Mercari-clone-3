@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
 
   def ship
     if @order.update(status: :shipped)
+      UserMailer.notify_shipped(@order).deliver
       redirect_to order_path(@order), notice: "商品を発送しました"
     else
       flash.new.alert = "商品の発送通知に失敗しました"
