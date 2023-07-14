@@ -90,6 +90,7 @@ Rails.application.routes.draw do
     resources :orders, only: %i[new create show], shallow: true
     # item_orders_path      POST  /items/:item_id/orders(.:format)      orders#create
     # new_item_order_path   GET   /items/:item_id/orders/new(.:format)  orders#new
+    # item_order_path       GET   /items/:item_id/orders/:id(.:format)  orders#show
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
