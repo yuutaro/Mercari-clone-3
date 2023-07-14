@@ -87,10 +87,13 @@ Rails.application.routes.draw do
     # item_current_shipping_address_path   PATCH   /items/:item_id/current_shipping_address(.:format) current_shipping_addresses#update
     # item_current_shipping_address_path   PUT     /items/:item_id/current_shipping_address(.:format) current_shipping_addresses#update
 
-    resources :orders, only: %i[new create show], shallow: true
+    resources :orders, only: %i[new create show], shallow: true do
     # item_orders_path      POST  /items/:item_id/orders(.:format)      orders#create
     # new_item_order_path   GET   /items/:item_id/orders/new(.:format)  orders#new
     # item_order_path       GET   /items/:item_id/orders/:id(.:format)  orders#show
+      resources :messages, only: %i[create]
+      # order_messages_path POST  /orders/:order_id/messages(.:format)  messages#create
+    end
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
