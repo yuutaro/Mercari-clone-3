@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   belongs_to :payer_prefecture, class_name: "Prefecture"
 
   has_many :messages, dependent: :destroy
-  
+
   enum status: {
     ordered: 10,
     shipped: 20,
@@ -28,29 +28,29 @@ class Order < ApplicationRecord
   def pay!
     transaction do
       begin
-      check_payment_method_id
-      check_shipping_address
+        check_payment_method_id
+        check_shipping_address
       
-      if errors.any?
-        raise ActiveRecord::RecordInvalid, self
-      end
-      
-      self.payment_method_id = payment_method_id
-      
-      assign_shipping_address_attributes
-      save!
-      create_stripe_payment_intent!
+        if errors.any?
+          raise ActiveRecord::RecordInvalid, self
+        end
+        
+        self.payment_method_id = payment_method_id
+        
+        assign_shipping_address_attributes
+        save!
+        create_stripe_payment_intent!
 
       rescue Stripe::CardError => e
-      Rails.logger.error "Error is: \#{e.error.code}"
-      payment_intent_id = e.error.payment_intent.id
-      payment_intent = Stripe::PaymentIntent.retrieve(payment_intent_id)
-      Rails.logger.error "Error is: #{e.error.code}, payment_intent_id = #{payment_intent.id}"
-      false
+        Rails.logger.error "Error is: \#{e.error.code}"
+        payment_intent_id = e.error.payment_intent.id
+        payment_intent = Stripe::PaymentIntent.retrieve(payment_intent_id)
+        Rails.logger.error "Error is: #{e.error.code}, payment_intent_id = #{payment_intent.id}"
+        false
 
       rescue ActiveRecord::RecordInvalid => e
-      Rails.logger.error e
-      false
+        Rails.logger.error e
+        false
       end
     end
   end
