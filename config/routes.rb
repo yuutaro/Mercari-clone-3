@@ -43,10 +43,11 @@ Rails.application.routes.draw do
     resources :shipping_addresses
     resource :current_shipping_address, only: [:update]
     resources :orders, only: [:new, :create, :show], shallow: true do
-      resources :messages, only: [:create]                                                                  # order_messages_path POST   /orders/:order_id/messages(.:format)  messages#create
+      resources :messages, only: [:create]                                                                  # order_messages_path              POST   /orders/:order_id/messages(.:format)              messages#create
       member do
-        post :ship                                                                                          # ship_order_path     POST   /orders/:id/ship(.:format)            orders#ship
+        post :ship                                                                                          # ship_order_path                  POST   /orders/:id/ship(.:format)                        orders#ship
       end
+      resource :payer_evaluation, only: [:create]                                                           # order_payer_evaluation_path      GET    /orders/:order_id/payer_evaluation/new(.:format)  payer_evaluations#new
     end
   end
 
