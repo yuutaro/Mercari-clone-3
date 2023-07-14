@@ -93,8 +93,11 @@ Rails.application.routes.draw do
     # item_order_path       GET   /items/:item_id/orders/:id(.:format)  orders#show
       resources :messages, only: %i[create]
       # order_messages_path POST  /orders/:order_id/messages(.:format)  messages#create
+      member do
+        post :ship
+        # ship_order_path  POST   /orders/:id/ship(.:format)   orders#ship
+      end
     end
-  end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
