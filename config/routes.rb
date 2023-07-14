@@ -98,6 +98,7 @@ Rails.application.routes.draw do
         # ship_order_path  POST   /orders/:id/ship(.:format)   orders#ship
       end
     end
-
+  end
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
 end
