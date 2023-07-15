@@ -97,6 +97,8 @@ Rails.application.routes.draw do
         post :ship
         # ship_order_path  POST   /orders/:id/ship(.:format)   orders#ship
       end
+      resource :payer_evaluation, only: %i[create]
+      # order_payer_evalution_path  POST   /orders/:order_id/payer_evalution(.:format)   payer_evalutions#create
     end
   end
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
