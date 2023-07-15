@@ -3,6 +3,8 @@ class Order < ApplicationRecord
   belongs_to :item
   belongs_to :payer_prefecture, class_name: "Prefecture"
 
+  has_one :payer_evaluation, dependent: :destroy
+
   has_many :messages, dependent: :destroy
 
   enum status: {
@@ -24,6 +26,7 @@ class Order < ApplicationRecord
   validates :payer_line, presence: true
   validates :payer_building_name, presence: true
   validates :payer_phone_number, presence: true
+  validates_associated :payer_evaluation
 
   def pay!
     transaction do
