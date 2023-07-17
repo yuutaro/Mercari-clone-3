@@ -6,6 +6,7 @@ class SellerEvaluationsController < ApplicationController
     @order.build_seller_evaluation(seller_evaluation_params)
     @order.status = :completed
     if @order.save
+      UserMailer.notify_evaluation(@order).deliver
       redirect_to order_path(@order), notice: "評価の作成に成功しました"
     else
       @order.restore_status!
