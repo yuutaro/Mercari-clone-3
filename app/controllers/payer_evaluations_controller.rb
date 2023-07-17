@@ -6,6 +6,7 @@ class PayerEvaluationsController < ApplicationController
     @order.build_payer_evaluation(payer_evaluation_params)
     @order.status = :received
     if @order.save
+      UserMailer.notify_received(@order).deliver
       redirect_to order_path(@order), notice: "評価の作成に成功しました"
     else
       @order.restore_status!
