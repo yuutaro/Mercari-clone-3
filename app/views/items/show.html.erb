@@ -32,7 +32,7 @@
             <span class="text-xs text-gray-700"><%= @item.favorites.size %></span>
           <% end %>
         <% else %>
-          <%= link_to item_favorites_path(item_id: @item.id), method: :delete, class: "p-2 px-4 text-center flex flex-col space-y-2 items-center justify-center hover:bg-gray-100 duration-200 transition rounded-sm" do %>
+          <%= link_to item_favorite_path(item_id: @item.id), method: :delete, class: "p-2 px-4 text-center flex flex-col space-y-2 items-center justify-center hover:bg-gray-100 duration-200 transition rounded-sm" do %>
             <svg class="w-7 text-red-500" viewbox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <!-- Generator: Sketch 59.1 (86144) - https://sketch.com-->
               <g id="ic_fluent_heart_24_regular" fill="currentColor">
@@ -57,7 +57,7 @@
           <% end %>
         <% else %>
           <% if @item.user == current_user %>
-            <%= link_to "編集する", edit_item_path(@item), class: "text-basefont-bold bg-red-500 text-white p-2 w-full block text-sm py-4 rounded-sm text-center" %>
+            <%= link_to "編集する", edit_item_path(@item), class: "text-base font-bold bg-red-500 text-white p-2 w-full block text-sm py-4 rounded-sm text-center" %>
           <% else %>
             <%= link_to "購入手続きへ", new_item_order_path(@item), class: "text-base font-bold bg-red-500 text-white p-2 w-full block py-4 rounded-sm text-center" %>
           <% end %>
@@ -105,7 +105,7 @@
       </div>
       <div class="mb-8" id="seller">
         <h3 class="text-lg font-bold text-gray-700 mb-4">出品者</h3>
-        <a class="py-4 flex space-x-4 items-start mb-4 border-t border-b border-gray-300 block md:items-center hover:bg-gray-100" href="#">
+        <%= link_to @item.user, class: "py-4 flex space-x-4 items-start mb-4 border-t border-b border-gray-300 block md:items-center hover:bg-gray-100" do %>
           <%= image_tag "profile.png", class: "rounded-full w-10 h-10 md:w-14 md:h-14" %>
           <div class="flex-grow">
             <p class="font-bold"><%= @item.user.nickname %></p>
@@ -149,7 +149,7 @@
               <path d="M8.46967 4.21967C8.17678 4.51256 8.17678 4.98744 8.46967 5.28033L15.1893 12L8.46967 18.7197C8.17678 19.0126 8.17678 19.4874 8.46967 19.7803C8.76256 20.0732 9.23744 20.0732 9.53033 19.7803L16.7803 12.5303C17.0732 12.2374 17.0732 11.7626 16.7803 11.4697L9.53033 4.21967C9.23744 3.92678 8.76256 3.92678 8.46967 4.21967Z" fill="currentColor"></path>
             </svg>
           </div>
-        </a>
+        <% end %>
       </div>
       <div class="mb-8" id="comment">
         <div class="mb-4">
