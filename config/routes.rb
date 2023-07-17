@@ -104,8 +104,13 @@ Rails.application.routes.draw do
       # order_seller_evaluation_path POST   /orders/:order_id/seller_evaluation(.:format) seller_evaluation#create
     end
   end
-  resources :users, only: %i[show]
+  resources :users, only: %i[show] do
   # user_path   GET  /user/:id(.:format)   users#show
+
+    resources :evaluations, only: %i[index]
+    # user_evaluations_path   GET  /user/:user_id/evaluations(.:format)   evaluations#index
+  end
+
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
