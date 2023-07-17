@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   belongs_to :payer_prefecture, class_name: "Prefecture"
 
   has_one :payer_evaluation, dependent: :destroy
+  has_one :seller_evaluation, dependent: :destroy
 
   has_many :messages, dependent: :destroy
 
@@ -27,6 +28,7 @@ class Order < ApplicationRecord
   validates :payer_building_name, presence: true
   validates :payer_phone_number, presence: true
   validates_associated :payer_evaluation
+  validates_associated :seller_evaluation
 
   def pay!
     transaction do
