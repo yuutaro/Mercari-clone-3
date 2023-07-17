@@ -46,7 +46,7 @@
           <% elsif @order.shipped? %>
             <p class="font-bold mb-2">受取評価をしてください</p>
             <p>商品が発送されました。商品が到着したら、出品者の評価をしてください</p>
-          <% elsif @order.received? %>
+          <% else %>
             <p class="font-bold mb-2">取引が完了しました</p>
             <p>このたびはメルカリのご利用ありがとうございました</p>
           <% end %>
@@ -54,13 +54,13 @@
           <% if @order.ordered? %>
             <p class="font-bold mb-2"> 商品を発送してください</p>
             <p>商品が購入され、支払されました。発送してください。</p>
-            <% elsif @order.shipped? %>
-              <p class="font-bold mb-2"> 商品の発送を通知しました</p>
-              <p>購入者の受取確認と評価をしばらくお待ちください</p>
-            <% else %>
-              <p class="font-bold mb-2">評価をしてください</p>
-              <p>購入者に商品が到着し評価がありました。購入者の評価を行って取引を完了してください。</p>
-              <p class="text-xs text-gray-500">※評価は取引が終わった後で見ることができます。</p>
+          <% elsif @order.shipped? %>
+            <p class="font-bold mb-2"> 商品の発送を通知しました</p>
+            <p>購入者の受取確認と評価をしばらくお待ちください</p>
+          <% elsif @order.received? %>
+            <p class="font-bold mb-2">評価をしてください</p>
+            <p>購入者に商品が到着し評価がありました。購入者の評価を行って取引を完了してください。</p>
+            <p class="text-xs text-gray-500">※評価は取引が終わった後で見ることができます。</p>
           <% else %>
             <p class="font-bold mb-2">取引が完了しました</p>
             <p>このたびはメルカリのご利用ありがとうございました</p>
@@ -118,7 +118,7 @@
           <div>
             <p class="mb-2 text-sm font-bold">評価のコメントを記入しましょう</p>
             <%= f.text_area :comment, class: "border border-gray-300 rounded py-2 px-3 text-grey-darker bg-gray-100 border border-gray-300 h-24 w-full mb-2", placeholder: "例）このたびはお取引ありがとうございました。" %>
-            <%= f.submit "評価を投稿する", class: "text-base font-bold bg-white bg-red-500 text-white p-2 w-full block text-sm py-4 rounded-sm" %>
+            <%= f.submit "評価を投稿する", class: "text-base font-bold bg-white bg-red-500 text-white p-2 w-full block text-sm py-4 rounded-sm"  %>
             <ul class="text-xs text-gray-500 mt-4">
               <li>※このコメントは、取引完了後に評価一覧で公開されます。</li>
               <li>※商品に問題がある場合などは、評価をせずに取引メッセージで伝えましょう。</li>
