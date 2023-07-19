@@ -110,8 +110,13 @@ Rails.application.routes.draw do
     resources :evaluations, only: %i[index]
     # user_evaluations_path   GET  /user/:user_id/evaluations(.:format)   evaluations#index
   end
-
+  get "mypage" => "mypage#index"
+  # mypage_path  GET  /mypage(.:format)   mypage#index
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+
+
+
 
 end
