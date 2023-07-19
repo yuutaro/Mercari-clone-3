@@ -112,6 +112,11 @@ Rails.application.routes.draw do
   end
   get "mypage" => "mypage#index"
   # mypage_path  GET  /mypage(.:format)   mypage#index
+  namespace :mypage do
+    resources :favorites, only: %i[index destroy]
+    # mypage_favorites_path    GET      /mypage/favorites(.:format)       mypage/favorites#index
+    # mypage_favorite_path     DELETE   /mypage/favorites/:id(.:format)   mypage/favorites#destroy
+  end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
