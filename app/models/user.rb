@@ -1,22 +1,21 @@
 class User < ApplicationRecord
-  devise  
-          #認証機能
-          :database_authenticatable,
-          #新規登録機能
+  #認証機能
+  #新規登録機能
+  #パスワードリセット機能
+  #ログイン状態保持機能
+  #バリデーション機能
+  #メールアドレス認証機能
+  #アカウントロック機能
+  #ログイン保持機能
+  #ログイン時のIPなどの記録機能
+  devise  :database_authenticatable,
           :registerable,
-          #パスワードリセット機能
           :recoverable,
-          #ログイン状態保持機能
           :rememberable,
-          #バリデーション機能
           :validatable,
-          #メールアドレス認証機能
           :confirmable,
-          #アカウントロック機能
           :lockable,
-          #ログイン保持機能
           :timeoutable,
-          #ログイン時のIPなどの記録機能
           :trackable
 
   validates :nickname,   presence: true
