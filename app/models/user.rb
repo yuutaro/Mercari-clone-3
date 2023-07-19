@@ -41,6 +41,10 @@ class User < ApplicationRecord
     female: 2
   }
 
+  #評価レート最小最大値の定義
+  EVALUATION_MAX_RATE = 5
+  EVALUATION_MINIMUM_RATE = 1
+
   #gendersの国際化されたバージョンを取得するクラスメソッド
   class << self
     def genders_i18n
@@ -83,6 +87,27 @@ class User < ApplicationRecord
   #いいねしているか判定するメソッド
   def liked?(item)
     favorites.exists?(item: item)
+  end
+
+  def evaluation_rate
+    evaluation_mappings = evaluations.each_with_object({ good: 0, bad: 0 }) do |evaluation, result|
+      #good,badそれぞれの場合にカウントを加算する
+      result[:good] += 1 if evaluation.good?
+      result[:bad] += 1 unless evaluation.good?
+    end
+
+    #評価の総数の算出
+    evaluation_count = evaluation_mappings[:good] + evaluation_mappings[:bad]
+    #good評価ポイントの算出 good評価数 × 評価最大値5
+    good_total_point = evaluation_mappings[:good] * EVALUATION_MAX_RATE
+    #bad評価ポイントの算出   bad評価数 × 評価最小値1
+    bad_total_point = evaluation_mappings[:bad] * EVALUATION_MINIMUM_RATE
+    
+    #評価レート計算 小数点以下切り捨て  (good評価ポイント+bad評価ポイント)÷評価の総数
+    ((good_total_point + bad_total_point) / evaluation_count).round
+    #評価がない場合、0で割るエラーに対して、0を返す
+    rescue ZeroDivisionError
+    0
   end
 
 end
