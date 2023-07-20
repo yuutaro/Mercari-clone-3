@@ -119,6 +119,10 @@ Rails.application.routes.draw do
     
     resources :items, only: %i[index]
     # mypage_items_path        GET      /mypage/items(.:format)           mypage/items#index
+    namespace :items do
+      get "in_progress" => "in_progress#index", as: :in_progress
+      # mypage_items_in_progress_path  GET   /mypage/items/in_progress(.:format)
+    end
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
