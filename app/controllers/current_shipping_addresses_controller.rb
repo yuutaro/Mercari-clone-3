@@ -1,8 +1,11 @@
 class CurrentShippingAddressesController < ApplicationController
   before_action :authenticate_user!
 
+  #現在の配送住所更新メソッド
   def update
+    #商品IDを検索し、@itemにレコードを保存
     @item = Item.find(params[:item_id])
+    
     @current_shipping_address = CurrentShippingAddress.find_or_initialize_by(
       user_id: current_user.id
     )
