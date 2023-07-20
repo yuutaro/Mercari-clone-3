@@ -119,9 +119,13 @@ Rails.application.routes.draw do
     
     resources :items, only: %i[index]
     # mypage_items_path        GET      /mypage/items(.:format)           mypage/items#index
+
     namespace :items do
       get "in_progress" => "in_progress#index", as: :in_progress
-      # mypage_items_in_progress_path  GET   /mypage/items/in_progress(.:format)
+      # mypage_items_in_progress_path  GET   /mypage/items/in_progress(.:format) mypage/items/in_progress#index
+
+      get "completed" => "completed#index", as: :completed
+      # mypage_items_completed_path    GET   /mypage/items/completed(.:format)   mypage/items/completed#index
     end
   end
 
