@@ -131,6 +131,10 @@ Rails.application.routes.draw do
   resources :notifications, only: %i[index show]
   # notifications_path   GET   /notifications(.:format)       notifications#index
   # notification_path    GET   /notifications/:id(.:format)   notifications#show
+  
+  resources :news, only: %i[index show]
+  # news_index_path      GET   /news(.:format)     news#index
+  # news_path            GET   /news/:id(.:format) news#show
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
