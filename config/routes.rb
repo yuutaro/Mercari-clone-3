@@ -108,7 +108,12 @@ Rails.application.routes.draw do
   # user_path   GET  /user/:id(.:format)   users#show
 
     resources :evaluations, only: %i[index]
-    # user_evaluations_path   GET  /user/:user_id/evaluations(.:format)   evaluations#index
+    # user_evaluations_path     GET  /user/:user_id/evaluations(.:format)         evaluations#index
+
+    resource :relationships, only: %i[create destroy]
+    # user_relationships_path   DELETE   /users/:user_id/relationships(.:format)  relationships#destroy
+    # user_relationships_path   POST     /users/:user_id/relationships(.:format)  relationships#create
+
   end
   get "mypage" => "mypage#index"
   # mypage_path  GET  /mypage(.:format)   mypage#index
