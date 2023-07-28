@@ -46,7 +46,7 @@ class User < ApplicationRecord
     class_name: "Relationship",
     foreign_key: "followed_id",
     dependent: :destroy
-    
+
   has_many :followers, through: :passive_relationships, source: :follower
 
   enum gender: {
@@ -101,6 +101,21 @@ class User < ApplicationRecord
   #いいねしているか判定するメソッド
   def liked?(item)
     favorites.exists?(item: item)
+  end
+
+  #フォローするためのメソッド
+  def follow(follow_user)
+    active_relationships.create!(followed_id: follow_user.id)
+  end
+
+  #フォロー解除のためのメソッド
+  def unfollow(unfollow_user)
+    active_relationships.find_by!(followed_id: unfollow_user.id).destroy!
+  end
+
+  #フォロー判定のためのメソッド
+  def following?(other_user)
+    following.where("relationships.followed_id = ?", other_user.id).exists?
   end
 
   def evaluation_rate
