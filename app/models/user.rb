@@ -27,7 +27,7 @@ class User < ApplicationRecord
   has_one :user_mobile_phone, dependent: :destroy
   has_one :stripe_customer, dependent: :destroy
   has_one :current_shipping_address, dependent: :destroy
-
+  has_one :profile, dependent: :destroy
 
   has_many :items, dependent: :destroy
   has_many :favorites, dependent: :destroy
