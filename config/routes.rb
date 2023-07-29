@@ -132,6 +132,12 @@ Rails.application.routes.draw do
       get "completed" => "completed#index", as: :completed
       # mypage_items_completed_path    GET   /mypage/items/completed(.:format)   mypage/items/completed#index
     end
+    
+    resource :profile, only: %i[edit update]
+    # edit_mypage_profile_path    GET    /mypage/profile/edit(.:format)   mypage/profiles#edit
+    # mypage_profile_path         PATCH  /mypage/profile/(.:format)       mypage/profiles#update
+    # mypage_profile_path         PUT    /mypage/profile/(.:format)       mypage/profiles#update
+
   end
   resources :notifications, only: %i[index show]
   # notifications_path   GET   /notifications(.:format)       notifications#index
