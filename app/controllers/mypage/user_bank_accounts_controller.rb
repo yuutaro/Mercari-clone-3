@@ -1,6 +1,11 @@
 class Mypage::UserBankAccountsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    #現在のユーザーのレコードを探し代入
+    @user_bank_accounts = current_user.user_bank_accounts
+  end
+
   def new
     #現在のユーザーの銀行口座の作成
     @user_bank_account = current_user.user_bank_accounts.build
