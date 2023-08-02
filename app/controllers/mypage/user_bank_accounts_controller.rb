@@ -23,6 +23,11 @@ class Mypage::UserBankAccountsController < ApplicationController
     end
   end
 
+  def edit
+    #現在のユーザーの銀行口座レコードを探し代入
+    @user_bank_account = current_user.user_bank_accounts.find(params[:id])
+  end
+
   private
 
   def user_bank_account_params
