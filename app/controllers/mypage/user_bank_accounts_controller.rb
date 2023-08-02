@@ -7,6 +7,15 @@ class Mypage::UserBankAccountsController < ApplicationController
   end
 
   def create
+    #入力された属性を参照して、銀行口座を代入
+    @user_bank_account = current_user.user_bank_accounts.build(user_bank_account_params)
+    #銀行口座情報を保存
+    if @user_bank_account.save
+      redirect_to mypage_user_bank_accounts_path, notice: "銀行口座の登録に成功しました"
+    else
+      flash.now.alert = "銀行口座の登録に失敗しました"
+      render :new
+    end
   end
 
   private
