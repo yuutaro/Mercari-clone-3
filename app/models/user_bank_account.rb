@@ -19,4 +19,9 @@ class UserBankAccount < ApplicationRecord
     end
   end
 
+  def kind_i18n
+    #銀行口座を日本語表示するメソッド
+    self.class.kinds_i18n[kind.to_sym]
+  end
+
 end
