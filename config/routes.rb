@@ -148,6 +148,10 @@ Rails.application.routes.draw do
     # mypage_user_bank_account_path       PUT     /mypage/user_bank_accounts/:id(.:format)        mypage/user_bank_accounts#update
     # mypage_user_bank_account_path       DELETE  /mypage/user_bank_accounts/:id(.:format)        mypage/user_bank_accounts#destroy
 
+    resource :current_user_bank_account, only: %i[update]
+    # mypage_current_user_bank_account_path    PATCH   /mypage/current_user_bank_account(.:format)   mypage/current_user_bank_accounts#update
+    # mypage_current_user_bank_account_path    PUT     /mypage/current_user_bank_account(.:format)   mypage/current_user_bank_accounts#update
+
   end
   resources :notifications, only: %i[index show]
   # notifications_path   GET   /notifications(.:format)       notifications#index
