@@ -11,4 +11,12 @@ class UserBankAccount < ApplicationRecord
     saving: 1,
     checking: 2
   }
+
+  class << self
+    def kinds_i18n
+      #localeファイルに定義した値を参照
+      I18n.t("enums.user_bank_account.kind")
+    end
+  end
+
 end
