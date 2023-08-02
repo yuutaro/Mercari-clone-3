@@ -132,11 +132,21 @@ Rails.application.routes.draw do
       get "completed" => "completed#index", as: :completed
       # mypage_items_completed_path    GET   /mypage/items/completed(.:format)   mypage/items/completed#index
     end
-    
+
     resource :profile, only: %i[edit update]
     # edit_mypage_profile_path    GET    /mypage/profile/edit(.:format)   mypage/profiles#edit
     # mypage_profile_path         PATCH  /mypage/profile/(.:format)       mypage/profiles#update
     # mypage_profile_path         PUT    /mypage/profile/(.:format)       mypage/profiles#update
+
+    resources :user_bank_accounts
+    # mypage_user_bank_accounts_path      GET     /mypage/user_bank_accounts(.:format)            mypage/user_bank_accounts#index
+    # mypage_user_bank_accounts_path      POST    /mypage/user_bank_accounts(.:format)            mypage/user_bank_accounts#create
+    # new_mypage_user_bank_account_path   GET     /mypage/user_bank_accounts/new(.:format)        mypage/user_bank_accounts#new
+    # edit_mypage_user_bank_account_path  GET     /mypage/user_bank_accounts/:id/edit(.:format)   mypage/user_bank_accounts#edit
+    # mypage_user_bank_account_path       GET     /mypage/user_bank_accounts/:id(.:format)        mypage/user_bank_accounts#show
+    # mypage_user_bank_account_path       PATCH   /mypage/user_bank_accounts/:id(.:format)        mypage/user_bank_accounts#update
+    # mypage_user_bank_account_path       PUT     /mypage/user_bank_accounts/:id(.:format)        mypage/user_bank_accounts#update
+    # mypage_user_bank_account_path       DELETE  /mypage/user_bank_accounts/:id(.:format)        mypage/user_bank_accounts#destroy
 
   end
   resources :notifications, only: %i[index show]
