@@ -1,6 +1,7 @@
 class Mypage::UserBankAccountsController < ApplicationController
   before_action :authenticate_user!
-
+  before_action :set_user_bank_account, only: %i[edit update]
+  
   def index
     #現在のユーザーのレコードを探し代入
     @user_bank_accounts = current_user.user_bank_accounts
@@ -24,8 +25,18 @@ class Mypage::UserBankAccountsController < ApplicationController
   end
 
   def edit
-    #現在のユーザーの銀行口座レコードを探し代入
-    @user_bank_account = current_user.user_bank_accounts.find(params[:id])
+    #set_user_bank_accountにて、現在のユーザーの銀行口座レコードを探し代入
+  end
+
+  def update
+    #set_user_bank_accountにて、現在のユーザーの銀行口座レコードを探し代入
+    #銀行口座情報を属性を参照し更新
+    if @user_bank_account.update(user_bank_account_params)
+      redirect_to mypage_user_bank_accounts_path, notice: "銀行口座の更新に成功しました"
+    else
+      flash.now.alert = "銀行口座の更新に失敗しました"
+      render :edit
+    end
   end
 
   private
@@ -39,7 +50,11 @@ class Mypage::UserBankAccountsController < ApplicationController
       :account_number,
       :account_name
     )
+  end
 
+  def set_user_bank_account
+    #現在のユーザーの銀行口座レコードを探し代入
+    @user_bank_account = current_user.user_bank_accounts.find(params[:id])
   end
 
 end
