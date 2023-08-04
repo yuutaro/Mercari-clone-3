@@ -1,6 +1,6 @@
 class Mypage::UserBankAccountsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user_bank_account, only: %i[edit update]
+  before_action :set_user_bank_account, only: %i[edit update destroy]
   
   def index
     #現在のユーザーのレコードを探し代入
@@ -26,6 +26,12 @@ class Mypage::UserBankAccountsController < ApplicationController
 
   def edit
     #set_user_bank_accountにて、現在のユーザーの銀行口座レコードを探し代入
+  end
+
+  def destroy
+    @user_bank_account.destroy
+  
+    redirect_to mypage_user_bank_accounts_path, notice: "銀行口座の削除に成功しました"
   end
 
   def update
