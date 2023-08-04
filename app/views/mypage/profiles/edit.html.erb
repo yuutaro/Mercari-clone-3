@@ -8,16 +8,16 @@
             <%= profile.label :avatar, class: "block text-grey-500 text-sm font-bold mb-2" %>
             <div class="flex space-x-6 items-center">
               <%= image_tag current_user.profile.avatar.url, class: "mb-4 rounded-full w-16 h-16 md:w-24 md:h-24" %>
-              <%= profile.file_field :avatar %>    
+              <%= profile.file_field :avatar %>
               <%= profile.hidden_field :avatar_cache %>
             </div>
-          <% end %> 
+          <% end %>
         </div>
       </div>
       <div class="text-left">
         <div class="mb-8">
           <%= f.label :nickname, class: "block text-grey-500 text-sm font-bold mb-2" %>
-          <%= f.text_field :nickname, class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full" %> 
+          <%= f.text_field :nickname, class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full"  %>
         </div>
         <div class="mb-8">
           <%= f.fields_for :profile do |profile| %>
