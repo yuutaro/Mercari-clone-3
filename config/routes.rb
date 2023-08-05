@@ -151,7 +151,9 @@ Rails.application.routes.draw do
     resource :current_user_bank_account, only: %i[update]
     # mypage_current_user_bank_account_path    PATCH   /mypage/current_user_bank_account(.:format)   mypage/current_user_bank_accounts#update
     # mypage_current_user_bank_account_path    PUT     /mypage/current_user_bank_account(.:format)   mypage/current_user_bank_accounts#update
-
+    resources :user_transfer_histories, only: %i[new create]
+    # mypage_user_transfer_histories_path      POST    /mypage/user_transfer_histories(.:format)     mypage/user_transfer_histories#create
+    # new_mypage_user_transfer_history_path    GET     /mypage/user_transfer_histories/new(.:format) mypage/user_transfer_histories#new
   end
   resources :notifications, only: %i[index show]
   # notifications_path   GET   /notifications(.:format)       notifications#index
