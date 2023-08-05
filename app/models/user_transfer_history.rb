@@ -7,7 +7,9 @@ class UserTransferHistory < ApplicationRecord
   validates :bank_account_kind, presence: true
   validates :bank_account_branch_name, presence: true
   validates :bank_account_number, presence: true
+  validates :price, numericality: { greater_than_or_equal_to: 500 }
 
+  validate :price_less_than_user_earning
 
   enum bank_account_kind: {
     saving: 1,
@@ -22,5 +24,28 @@ class UserTransferHistory < ApplicationRecord
 
   def bank_account_kind_i18n
     self.class.bank_account_kinds_i18n[bank_account_kind.to_sym]
+  end
+
+  #user_earningから金額を減らす処理
+  def request_transfer!
+    transaction do
+      save!
+      user.user_earning.price -= price
+      user.user_earning.save!
+    end
+  rescue ActiveRecord::RecordInvalid => e
+    false
+  end
+
+  private
+
+  def price_less_than_user_earning
+    return unless price.presence
+    return if price <= user.user_earning&.price.to_i
+
+    errors.add(
+      :price,
+      "は#{user.user_earning.price}以下である必要があります"
+    )
   end
 end
