@@ -3,33 +3,23 @@
     <h1 class="font-black mb-8 text-2xl">振込申請画面</h1>
     <div class="text-left">
       <div class="mb-6">
-        <div class="block text-grey-500 text-sm font-bold mb-2">
-          <%= UserTransferHistory.human_attribute_name(:bank_name) %>
-        </div>
+        <%= UserTransferHistory.human_attribute_name(:bank_name) %>
         <div class="py-2 px-3 w-full"><%= @user_transfer_history.bank_name %></div>
       </div>
       <div class="mb-6">
-        <div class="block text-grey-500 text-sm font-bold mb-2">
-          <%= UserTransferHistory.human_attribute_name(:bank_account_kind) %>
-        </div>
+        <%= UserTransferHistory.human_attribute_name(:bank_account_kind) %>
         <div class="py-2 px-3 w-full"><%= @user_transfer_history.bank_account_kind_i18n %></div>
       </div>
       <div class="mb-6">
-        <div class="block text-grey-500 text-sm font-bold mb-2">
-          <%= UserTransferHistory.human_attribute_name(:bank_account_branch_name) %>
-        </div>
+        <%= UserTransferHistory.human_attribute_name(:bank_account_branch_name) %>
         <div class="py-2 px-3 w-full"><%= @user_transfer_history.bank_account_branch_name %></div>
       </div>
       <div class="mb-6">
-        <div class="block text-grey-500 text-sm font-bold mb-2">
-          <%= UserTransferHistory.human_attribute_name(:bank_account_number) %>
-        </div>
+        <%= UserTransferHistory.human_attribute_name(:bank_account_number) %>
         <div class="py-2 px-3 w-full"><%= @user_transfer_history.bank_account_number %></div>
       </div>
       <div class="mb-6">
-        <div class="block text-grey-500 text-sm font-bold mb-2">
-          <%= UserTransferHistory.human_attribute_name(:bank_account_name) %>
-        </div>
+        <%= UserTransferHistory.human_attribute_name(:bank_account_name) %>
         <div class="py-2 px-3 w-full"><%= @user_transfer_history.bank_account_name %></div>
       </div>
     </div>
@@ -43,7 +33,7 @@
           <div class="py-2 px-3 w-full"><%= number_to_currency(current_user.user_earning&.price.to_i) %></div>
         </div>
         <div class="mb-6">
-          <%= f.label :price, class: "block text-grey-500 text-sm font-boldmb-2" %>
+          <%= f.label :price, class: "block text-grey-500 text-sm font-bold mb-2" %>
           <%= f.text_field :price, placeholder: "1000", class: "appearance-none border border-gray-300 rounded py-2 px-3 text-grey-darker w-full" %>
         </div>
       </div>
