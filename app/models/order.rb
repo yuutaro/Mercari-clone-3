@@ -44,9 +44,14 @@ class Order < ApplicationRecord
         
         assign_shipping_address_attributes
         save!
-        
+ 
         #購入時に報酬額を加算
         user_earning = UserEarning.find_or_initialize_by(user_id: item.user.id)
+
+        if user_earning.price == nil
+          user_earning.price = 0
+        end
+
         user_earning.price += item.price
         user_earning.save!
 

@@ -30,6 +30,10 @@ class UserTransferHistory < ApplicationRecord
   def request_transfer!
     transaction do
       save!
+      if user.user_earning.price == nil
+        user.user_earning.price == 0
+      end
+
       user.user_earning.price -= price
       user.user_earning.save!
     end
