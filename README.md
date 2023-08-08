@@ -14,3 +14,9 @@
 ActiveRecord::ConnectionNotEstablished: FATAL:  could not open file "global/pg_filenode.map": Permission denied\\
 アクティブレコードがどこかのファイルにアクセス出来なくなる
 # Mercari-clone-3
+
+# 追加機能
+商品検索システム(プロトタイプ)
+・作品名は、作品名nameと商品説明descriptionに含まれるワードを検索する仕様
+・販売価格は、以上以下の仕様。片方空欄の場合、入力済みのformのみ検索が適用される
+・カテゴリーのような、選択系は、出品formからの移植。条件として_eqで選択したカテゴリーIDと一致するものが検索される。
