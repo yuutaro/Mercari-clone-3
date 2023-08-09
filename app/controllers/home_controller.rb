@@ -6,7 +6,7 @@ class HomeController < ApplicationController
     #検索フォームの値を元にItemテーブルからデータを探す
     @q = Item.ransack(params[:q])
     #ransackメソッドで取得したデータ(Ransack::Searchオブジェクト)を元に、ActiveRecord_Relationオブジェクトに変換
-    @items = @q.result.includes(:user).order(created_at: :desc)
+    @items = @q.result.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   
