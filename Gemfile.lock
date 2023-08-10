@@ -84,6 +84,7 @@ GEM
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
+    chunky_png (1.4.0)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
@@ -237,6 +238,10 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.5)
+    rqrcode (2.2.0)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 1.0)
+    rqrcode_core (1.2.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
@@ -318,6 +323,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   carrierwave
+  chunky_png
   devise
   fog-aws
   jbuilder (~> 2.7)
@@ -329,6 +335,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.7, >= 6.1.7.3)
   ransack
+  rqrcode
   sass-rails (>= 6)
   seed-fu
   selenium-webdriver (>= 4.0.0.rc1)

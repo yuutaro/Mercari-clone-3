@@ -25,3 +25,10 @@ ActiveRecord::ConnectionNotEstablished: FATAL:  could not open file "global/pg_f
 ・Gemであるkaminariを使用した
 ・HomeControllerで@itemsに代入する際に末尾に.page(params[:page]).per(5)を加えることで追加できる
 ・CSSデザインが出来ようできなく、bootstrapを使用する必要があるらしいが、難易度が高いためデザインは保留とした。
+
+【QRコード表示(プロトタイプ)】
+参考：https://qiita.com/sonken625/items/7b49712dd6512394b397#chunky_png
+・QRコードのgemを使用し、application_helperにコードを記載
+・商品詳細画面内にQRコードが表示される。生成や保存しているわけではない。
+・QRコードを読み取ると、http://localhost:3000/items/10 にアクセスするのでおそらく成功
+・デザインの適用は特にしてない
